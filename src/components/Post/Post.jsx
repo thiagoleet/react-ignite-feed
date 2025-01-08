@@ -1,28 +1,42 @@
+/* eslint-disable react/prop-types */
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+
 import { CommentForm } from "./CommentForm";
 import { Comment } from "./Comment";
-import styles from "./Post.module.css";
 import { Avatar } from "../Avatar/Avatar";
 
-export function Post() {
+import styles from "./Post.module.css";
+
+export function Post({ author, content, tags, publishedAt }) {
+  const publishedDateFormated = format(publishedAt, "dd 'de' MMMM 'às' HH:mm", {
+    locale: ptBR,
+  });
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
           <Avatar
-            src="https://avatars.githubusercontent.com/u/9437391?v=4"
-            userName="John Doe"
+            src={author.avatarUrl}
+            userName={author.name}
             hasBorder
           />
           <div className={styles.authorInfo}>
-            <strong>John Doe</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
         <time
-          title="01 de Janeiro às 10:46"
-          dateTime="2025-01-08 10:46:27"
+          title={publishedDateFormated}
+          dateTime={publishedAt.toISOString()}
         >
-          Publicado há 1h
+          Publicado {publishedDateRelativeToNow}
         </time>
       </header>
 
