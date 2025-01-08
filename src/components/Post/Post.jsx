@@ -19,9 +19,11 @@ export function Post({ author, content, tags, publishedAt }) {
   }
 
   function deleteComment(id) {
-    setComments((prevComments) =>
-      prevComments.filter((comment) => comment.id !== id)
+    const commentsWithoutDeleted = comments.filter(
+      (comment) => comment.id !== id
     );
+
+    setComments(() => commentsWithoutDeleted);
   }
 
   return (

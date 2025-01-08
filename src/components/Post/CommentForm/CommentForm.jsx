@@ -15,6 +15,7 @@ export function CommentForm({ onAddNewComment }) {
     });
 
     event.target.reset();
+    setNewCommentText("");
   }
 
   function handleNewCommentChange(event) {
