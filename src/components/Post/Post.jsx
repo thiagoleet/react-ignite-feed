@@ -1,22 +1,15 @@
 /* eslint-disable react/prop-types */
-import { format, formatDistanceToNow } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
-
 import { CommentForm } from "./CommentForm";
 import { Comment } from "./Comment";
 import { Avatar } from "../Avatar/Avatar";
 
+import { useFormatDate } from "../../hooks/useFormatDate";
+
 import styles from "./Post.module.css";
 
 export function Post({ author, content, tags, publishedAt }) {
-  const publishedDateFormated = format(publishedAt, "dd 'de' MMMM 'às' HH:mm", {
-    locale: ptBR,
-  });
-
-  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
-    locale: ptBR,
-    addSuffix: true,
-  });
+  const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
+    useFormatDate(publishedAt);
 
   const formattedContent = content.map((line, index) => {
     if (line.type === "paragraph") {
@@ -53,7 +46,7 @@ export function Post({ author, content, tags, publishedAt }) {
         </div>
         <time
           title={publishedDateFormated}
-          dateTime={publishedAt.toISOString()}
+          dateTime={ISODate}
         >
           Publicado {publishedDateRelativeToNow}
         </time>
