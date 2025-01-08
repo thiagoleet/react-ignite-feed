@@ -34,7 +34,7 @@ export function Post() {
         <p>
           <a href="#">john.doe/post-content</a>
         </p>
-        <p>
+        <p className={styles.tags}>
           <a href="#">#webdevelopment</a>
           <a href="#">#javascript</a>
           <a href="#">#react</a>
