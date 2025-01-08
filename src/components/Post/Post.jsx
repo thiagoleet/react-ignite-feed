@@ -18,6 +18,12 @@ export function Post({ author, content, tags, publishedAt }) {
     setComments((prevComments) => [...prevComments, comment]);
   }
 
+  function deleteComment(id) {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.id !== id)
+    );
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -68,7 +74,9 @@ export function Post({ author, content, tags, publishedAt }) {
         {comments.map((comment) => (
           <Comment
             key={comment.id}
+            id={comment.id}
             content={comment.content}
+            onDeleteComment={deleteComment}
           />
         ))}
       </div>
