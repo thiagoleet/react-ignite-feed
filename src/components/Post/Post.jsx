@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import React from "react";
+
 import { CommentForm } from "./CommentForm";
 import { Comment } from "./Comment";
 import { Avatar } from "../Avatar/Avatar";
@@ -8,6 +10,7 @@ import { useFormatDate } from "../../hooks/useFormatDate";
 import styles from "./Post.module.css";
 
 export function Post({ author, content, tags, publishedAt }) {
+  const [comments, setComments] = React.useState([]);
   const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
     useFormatDate(publishedAt);
 
@@ -29,6 +32,10 @@ export function Post({ author, content, tags, publishedAt }) {
       href={`#${tag}`}
     >{`#${tag}`}</a>
   ));
+
+  function handleAddNewComment(comment) {
+    setComments((prevComments) => [...prevComments, comment]);
+  }
 
   return (
     <article className={styles.post}>
@@ -57,12 +64,15 @@ export function Post({ author, content, tags, publishedAt }) {
         <p className={styles.tags}>{tagList}</p>
       </div>
 
-      <CommentForm />
+      <CommentForm onAddNewComment={handleAddNewComment} />
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment, index) => (
+          <Comment
+            key={index}
+            content={comment.content}
+          />
+        ))}
       </div>
     </article>
   );
