@@ -1,15 +1,23 @@
 /* eslint-disable react/prop-types */
+import React from "react";
+
 import styles from "./CommentForm.module.css";
 
 export function CommentForm({ onAddNewComment }) {
+  const [newCommentText, setNewCommentText] = React.useState("");
+
   function handleSubmit(event) {
     event.preventDefault();
 
     onAddNewComment({
-      content: event.target.comment.value,
+      content: newCommentText,
     });
 
     event.target.reset();
+  }
+
+  function handleNewCommentChange(event) {
+    setNewCommentText(event.target.value);
   }
 
   return (
@@ -21,6 +29,7 @@ export function CommentForm({ onAddNewComment }) {
 
       <textarea
         name="comment"
+        onChange={handleNewCommentChange}
         placeholder="Deixe um comentário"
       />
 
