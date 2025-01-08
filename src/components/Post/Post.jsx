@@ -1,16 +1,17 @@
 import { CommentForm } from "./CommentForm";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
+import { Avatar } from "../Avatar/Avatar";
 
 export function Post() {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
+          <Avatar
             src="https://avatars.githubusercontent.com/u/9437391?v=4"
-            alt="User Name"
-            className={styles.avatar}
+            userName="John Doe"
+            hasBorder
           />
           <div className={styles.authorInfo}>
             <strong>John Doe</strong>
