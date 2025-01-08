@@ -18,6 +18,25 @@ export function Post({ author, content, tags, publishedAt }) {
     addSuffix: true,
   });
 
+  const formattedContent = content.map((line, index) => {
+    if (line.type === "paragraph") {
+      return <p key={index}>{line.content}</p>;
+    } else if (line.type === "link") {
+      return (
+        <p key={index}>
+          <a href="#">{line.content}</a>
+        </p>
+      );
+    }
+  });
+
+  const tagList = tags.map((tag, index) => (
+    <a
+      key={index}
+      href={`#${tag}`}
+    >{`#${tag}`}</a>
+  ));
+
   return (
     <article className={styles.post}>
       <header>
@@ -41,22 +60,8 @@ export function Post({ author, content, tags, publishedAt }) {
       </header>
 
       <div className={styles.content}>
-        <p>Hello World</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum
-          nemo ad molestiae quasi mollitia deleniti deserunt, laboriosam
-          quibusdam, blanditiis est sit, minus nobis tempore quas impedit quo.
-          Voluptatem, adipisci!
-        </p>
-        <p>
-          <a href="#">john.doe/post-content</a>
-        </p>
-        <p className={styles.tags}>
-          <a href="#">#webdevelopment</a>
-          <a href="#">#javascript</a>
-          <a href="#">#react</a>
-          <a href="#">#nodejs</a>
-        </p>
+        {formattedContent}
+        <p className={styles.tags}>{tagList}</p>
       </div>
 
       <CommentForm />
