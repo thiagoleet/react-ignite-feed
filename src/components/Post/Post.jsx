@@ -12,7 +12,7 @@ export function Post() {
             className={styles.avatar}
           />
           <div className={styles.authorInfo}>
-            <strong>Diego Fernandes</strong>
+            <strong>John Doe</strong>
             <span>Web Developer</span>
           </div>
         </div>

@@ -16,7 +16,7 @@ export function Sidebar() {
           alt="User Name"
           className={styles.avatar}
         />
-        <strong>User Name</strong>
+        <strong>John Doe</strong>
         <span>Web Developer</span>
       </div>
 
