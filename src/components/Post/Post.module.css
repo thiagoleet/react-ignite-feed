@@ -71,3 +71,7 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.commentList {
+  margin-top: 2rem;
+}
