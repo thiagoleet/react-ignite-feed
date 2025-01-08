@@ -10,6 +10,7 @@ export function CommentForm({ onAddNewComment }) {
     event.preventDefault();
 
     onAddNewComment({
+      id: crypto.randomUUID(),
       content: newCommentText,
     });
 

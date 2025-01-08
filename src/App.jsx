@@ -14,13 +14,22 @@ const posts = [
       role: "Software Engineer",
     },
     content: [
-      { type: "paragraph", content: "Hello World" },
       {
+        id: "dea6db60-ca44-4a0e-8c99-0c07bb54ca54",
+        type: "paragraph",
+        content: "Hello World",
+      },
+      {
+        id: "5c146b09-5540-43ea-8ed9-ab052e1adce8",
         type: "paragraph",
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum nemo ad molestiae quasi mollitia deleniti deserunt, laboriosam quibusdam, blanditiis est sit, minus nobis tempore quas impedit quo. Voluptatem, adipisci!",
       },
-      { type: "link", content: "john.doe/post-content" },
+      {
+        id: "d8471403-2824-4f67-88a4-3bed3a73c412",
+        type: "link",
+        content: "john.doe/post-content",
+      },
     ],
     tags: ["webdevelopment", "javascript", "react", "nodejs"],
     publishedAt: new Date("2025-01-08 10:46:27"),
@@ -33,13 +42,22 @@ const posts = [
       role: "Astronomy Student",
     },
     content: [
-      { type: "paragraph", content: "Hello World" },
       {
+        id: "90f47ae4-8e91-47e1-aeba-e772aa045eb0",
+        type: "paragraph",
+        content: "Hello World",
+      },
+      {
+        id: "d6134cca-ae0e-4125-bc64-c626f2801581",
         type: "paragraph",
         content:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum nemo ad molestiae quasi mollitia deleniti deserunt, laboriosam quibusdam, blanditiis est sit, minus nobis tempore quas impedit quo. Voluptatem, adipisci!",
       },
-      { type: "link", content: "john.doe/post-content" },
+      {
+        id: "1f583d79-70b4-4710-8d1f-ec9b64e279a9",
+        type: "link",
+        content: "john.doe/post-content",
+      },
     ],
     tags: ["vue", "nuxt", "frontend"],
     publishedAt: new Date("2025-01-08 10:46:27"),
