@@ -41,21 +41,21 @@ export function Post({ author, content, tags, publishedAt }) {
       </header>
 
       <div className={styles.content}>
-        {content.map((line, index) => {
+        {content.map((line) => {
           if (line.type === "paragraph") {
-            return <p key={index}>{line.content}</p>;
+            return <p key={line}>{line.content}</p>;
           } else if (line.type === "link") {
             return (
-              <p key={index}>
+              <p key={line}>
                 <a href="#">{line.content}</a>
               </p>
             );
           }
         })}
         <p className={styles.tags}>
-          {tags.map((tag, index) => (
+          {tags.map((tag) => (
             <a
-              key={index}
+              key={tag}
               href={`#${tag}`}
             >{`#${tag}`}</a>
           ))}
@@ -65,9 +65,9 @@ export function Post({ author, content, tags, publishedAt }) {
       <CommentForm onAddNewComment={handleAddNewComment} />
 
       <div className={styles.commentList}>
-        {comments.map((comment, index) => (
+        {comments.map((comment) => (
           <Comment
-            key={index}
+            key={comment}
             content={comment.content}
           />
         ))}
