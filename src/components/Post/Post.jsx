@@ -1,3 +1,4 @@
+import { CommentForm } from "./CommentForm";
 import styles from "./Post.module.css";
 
 export function Post() {
@@ -41,6 +42,8 @@ export function Post() {
           <a href="#">#nodejs</a>
         </p>
       </div>
+
+      <CommentForm />
     </article>
   );
 }
