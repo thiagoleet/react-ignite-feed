@@ -14,25 +14,6 @@ export function Post({ author, content, tags, publishedAt }) {
   const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
     useFormatDate(publishedAt);
 
-  const formattedContent = content.map((line, index) => {
-    if (line.type === "paragraph") {
-      return <p key={index}>{line.content}</p>;
-    } else if (line.type === "link") {
-      return (
-        <p key={index}>
-          <a href="#">{line.content}</a>
-        </p>
-      );
-    }
-  });
-
-  const tagList = tags.map((tag, index) => (
-    <a
-      key={index}
-      href={`#${tag}`}
-    >{`#${tag}`}</a>
-  ));
-
   function handleAddNewComment(comment) {
     setComments((prevComments) => [...prevComments, comment]);
   }
@@ -60,8 +41,25 @@ export function Post({ author, content, tags, publishedAt }) {
       </header>
 
       <div className={styles.content}>
-        {formattedContent}
-        <p className={styles.tags}>{tagList}</p>
+        {content.map((line, index) => {
+          if (line.type === "paragraph") {
+            return <p key={index}>{line.content}</p>;
+          } else if (line.type === "link") {
+            return (
+              <p key={index}>
+                <a href="#">{line.content}</a>
+              </p>
+            );
+          }
+        })}
+        <p className={styles.tags}>
+          {tags.map((tag, index) => (
+            <a
+              key={index}
+              href={`#${tag}`}
+            >{`#${tag}`}</a>
+          ))}
+        </p>
       </div>
 
       <CommentForm onAddNewComment={handleAddNewComment} />
