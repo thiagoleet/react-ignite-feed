@@ -42,7 +42,7 @@ export function Post({ author, content, tags, publishedAt }: PostProps) {
         <div className={styles.author}>
           <Avatar
             src={author.avatarUrl}
-            userName={author.name}
+            alt={author.name}
             hasBorder
           />
           <div className={styles.authorInfo}>
