@@ -6,23 +6,19 @@ import { Comment } from "./Comment";
 import { Avatar } from "../Avatar/Avatar";
 
 import { useFormatDate } from "../../hooks/useFormatDate";
-import { Author } from "../../models/Author";
-import { PostContent } from "../../models/Post";
+import { Post as PostData } from "../../models/Post";
 
 import styles from "./Post.module.css";
 import { Comment as CommentData } from "../../models/Comment";
 
 interface PostProps {
-  author: Author;
-  content: PostContent[];
-  tags: string[];
-  publishedAt: Date;
+  post: PostData;
 }
 
-export function Post({ author, content, tags, publishedAt }: PostProps) {
+export function Post({ post }: PostProps) {
   const [comments, setComments] = React.useState<CommentData[]>([]);
   const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
-    useFormatDate(publishedAt);
+    useFormatDate(post.publishedAt);
 
   function handleAddNewComment(comment: CommentData) {
     setComments((prevComments) => [...prevComments, comment]);
@@ -41,13 +37,13 @@ export function Post({ author, content, tags, publishedAt }: PostProps) {
       <header>
         <div className={styles.author}>
           <Avatar
-            src={author.avatarUrl}
-            alt={author.name}
+            src={post.author.avatarUrl}
+            alt={post.author.name}
             hasBorder
           />
           <div className={styles.authorInfo}>
-            <strong>{author.name}</strong>
-            <span>{author.role}</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
         <time
@@ -59,7 +55,7 @@ export function Post({ author, content, tags, publishedAt }: PostProps) {
       </header>
 
       <div className={styles.content}>
-        {content.map((line) => {
+        {post.content.map((line) => {
           if (line.type === "paragraph") {
             return <p key={line.id}>{line.content}</p>;
           } else if (line.type === "link") {
@@ -71,7 +67,7 @@ export function Post({ author, content, tags, publishedAt }: PostProps) {
           }
         })}
         <p className={styles.tags}>
-          {tags.map((tag) => (
+          {post.tags.map((tag) => (
             <a
               key={tag}
               href={`#${tag}`}

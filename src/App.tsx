@@ -68,10 +68,7 @@ export function App() {
   const postList = posts.map((post) => (
     <Post
       key={post.id}
-      author={post.author}
-      content={post.content}
-      tags={post.tags}
-      publishedAt={post.publishedAt}
+      post={post}
     />
   ));
 
