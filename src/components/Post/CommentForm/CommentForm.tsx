@@ -2,11 +2,16 @@
 import React from "react";
 
 import styles from "./CommentForm.module.css";
+import { Comment } from "../../../models/Comment";
 
-export function CommentForm({ onAddNewComment }) {
+interface CommentFormProps {
+  onAddNewComment: (comment: Comment) => void;
+}
+
+export function CommentForm({ onAddNewComment }: CommentFormProps) {
   const [newCommentText, setNewCommentText] = React.useState("");
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     onAddNewComment({
@@ -14,16 +19,20 @@ export function CommentForm({ onAddNewComment }) {
       content: newCommentText,
     });
 
-    event.target.reset();
+    // event.target.reset(); // This line is commented out because it is not working
     setNewCommentText("");
   }
 
-  function handleNewCommentChange(event) {
+  function handleNewCommentChange(
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) {
     setNewCommentText(event.target.value);
     event.target.setCustomValidity("");
   }
 
-  function handleNewCommentInvalid(event) {
+  function handleNewCommentInvalid(
+    event: React.InvalidEvent<HTMLTextAreaElement>
+  ) {
     event.target.setCustomValidity("Este campo é obrigatório");
   }
 
