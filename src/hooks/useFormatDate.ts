@@ -1,7 +1,7 @@
 import { format, formatDistanceToNow } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
+import { ptBR } from "date-fns/locale/pt-BR";
 
-export function useFormatDate(date) {
+export function useFormatDate(date: Date) {
   const formattedDate = format(date, "dd 'de' MMMM 'às' HH:mm", {
     locale: ptBR,
   });
@@ -13,5 +13,5 @@ export function useFormatDate(date) {
 
   const ISODate = date.toISOString();
 
-  return [ formattedDate, relativeDate, ISODate ];
+  return [formattedDate, relativeDate, ISODate];
 }
