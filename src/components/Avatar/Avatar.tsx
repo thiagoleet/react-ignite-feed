@@ -1,7 +1,12 @@
-/* eslint-disable react/prop-types */
 import styles from "./Avatar.module.css";
 
-export function Avatar({ src, userName, hasBorder = true }) {
+interface AvatarProps {
+  src: string;
+  userName: string;
+  hasBorder?: boolean;
+}
+
+export function Avatar({ src, userName, hasBorder = true }: AvatarProps) {
   return (
     <img
       src={src}
