@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import { ThumbsUp, Trash } from "@phosphor-icons/react";
 
 import { Avatar } from "../../Avatar/Avatar";
@@ -6,10 +7,16 @@ import { Avatar } from "../../Avatar/Avatar";
 import styles from "./Comment.module.css";
 
 export function Comment({ id, content, onDeleteComment }) {
+  const [likesCount, setLikesCount] = React.useState(0);
+
   function handleDeleteComment() {
     if (id) {
       onDeleteComment(id);
     }
+  }
+
+  function handleLikeComment() {
+    setLikesCount((prevLikesCount) => prevLikesCount + 1);
   }
 
   return (
@@ -41,9 +48,9 @@ export function Comment({ id, content, onDeleteComment }) {
           <p>{content}</p>
         </div>
         <footer>
-          <button>
+          <button onClick={handleLikeComment}>
             <ThumbsUp />
-            Aplaudir <span>(20)</span>
+            Aplaudir <span>({likesCount})</span>
           </button>
         </footer>
       </div>
