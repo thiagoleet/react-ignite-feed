@@ -20,7 +20,14 @@ export function CommentForm({ onAddNewComment }) {
 
   function handleNewCommentChange(event) {
     setNewCommentText(event.target.value);
+    event.target.setCustomValidity("");
   }
+
+  function handleNewCommentInvalid(event) {
+    event.target.setCustomValidity("Este campo é obrigatório");
+  }
+
+  const isNewCommentTextEmpty = newCommentText.trim().length === 0;
 
   return (
     <form
@@ -33,10 +40,17 @@ export function CommentForm({ onAddNewComment }) {
         name="comment"
         onChange={handleNewCommentChange}
         placeholder="Deixe um comentário"
+        onInvalid={handleNewCommentInvalid}
+        required
       />
 
       <footer>
-        <button type="submit">Publicar</button>
+        <button
+          type="submit"
+          disabled={isNewCommentTextEmpty}
+        >
+          Publicar
+        </button>
       </footer>
     </form>
   );
