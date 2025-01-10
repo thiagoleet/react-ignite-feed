@@ -1,5 +1,5 @@
 export interface PostContent {
   id: string;
-  type: string;
+  type: "paragraph" | "link";
   content: string;
 }
