@@ -3,8 +3,9 @@ import styles from "./App.module.css";
 import { Post } from "./components/Post";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
+import { Post as PostData } from "./models/Post";
 
-const posts = [
+const posts: PostData[] = [
   {
     id: "8f289331-c5a2-4bbe-87d8-8d17dc5f8b20",
     author: {
