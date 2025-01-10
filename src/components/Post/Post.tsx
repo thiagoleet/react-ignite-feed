@@ -6,19 +6,29 @@ import { Comment } from "./Comment";
 import { Avatar } from "../Avatar/Avatar";
 
 import { useFormatDate } from "../../hooks/useFormatDate";
+import { Author } from "../../models/Author";
+import { PostContent } from "../../models/Post";
 
 import styles from "./Post.module.css";
+import { Comment as CommentData } from "../../models/Comment";
 
-export function Post({ author, content, tags, publishedAt }) {
-  const [comments, setComments] = React.useState([]);
+interface PostProps {
+  author: Author;
+  content: PostContent[];
+  tags: string[];
+  publishedAt: Date;
+}
+
+export function Post({ author, content, tags, publishedAt }: PostProps) {
+  const [comments, setComments] = React.useState<CommentData[]>([]);
   const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
     useFormatDate(publishedAt);
 
-  function handleAddNewComment(comment) {
+  function handleAddNewComment(comment: CommentData) {
     setComments((prevComments) => [...prevComments, comment]);
   }
 
-  function deleteComment(id) {
+  function deleteComment(id: string) {
     const commentsWithoutDeleted = comments.filter(
       (comment) => comment.id !== id
     );
